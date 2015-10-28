@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package pl7;
+package pl6;
 
 import java.util.Scanner;
 
@@ -29,54 +29,50 @@ import java.util.Scanner;
  *
  * @author Rui Almeida
  */
-public class Ex4 {
+public class Ex7 {
     
-    public static void reverseVector(int vec[]){
-        for(int i = 0, j = vec.length-1; i < vec.length/2; i++, j--){
-            int aux = vec[i];
-            vec[i] = vec[j];
-            vec[j] = aux;
+    public static String reverseString(String text){
+        String reversed = "";
+        for(int i = text.length() - 1; i >= 0; i--){
+            reversed += text.charAt(i);
         }
+        return reversed;
     }
-    
-    public static void shiftVectorRight(int[] vec){
-        int last = vec[vec.length-1];
-        for(int i = vec.length - 2; i >= 0; i--){
-            vec[i+1] = vec[i];
-        }
-        vec[0] = last;
-    }
-    
-    public static void shiftVectorLeft(int[] vec){
-        int first = vec[0];
-        for(int i = 0; i < vec.length - 1; i++){
-            vec[i] = vec[i+1];
-        }
-        vec[vec.length-1] = first;
-    }
-    
-    public static void showVector(int[] vec){
-        System.out.println("\nVector: ");
-        for(int i = 0; i < vec.length; i++)
-            System.out.print(vec[i] + " ");
-    }
-    
+   
+   public static boolean isOctal(int num){
+       int digito;
+       do{
+           digito = num % 10;
+           if (digito > 7)
+               return false;
+           num = num/10;
+               
+         
+       } while (num >0);
+       return true;    
+   }
+   
+   public static int oct2dex(int num){
+       int i = 0;
+       int oct = 0;
+       do{
+           int digito = num % 10;
+           oct = (int) (oct + digito*Math.pow(8, i));
+           num = num / 10;
+           i++;
+                   
+       } while (num>0);
+       return oct;
+   }
+   
+ 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Quantidade de numeros:");
-        int n = scanner.nextInt();
-        int[] vec = new int[n];
-        
-        for(int i = 0; i < n; i++){
-            System.out.print("Coloque 1 numero: ");
-            vec[i] = scanner.nextInt();
+        int num = scanner.nextInt();
+        while (isOctal (num)){
+            System.out.println(oct2dex(num));
+            num = scanner.nextInt();
         }
-        
-        reverseVector(vec);
-        showVector(vec);
-        
-        shiftVectorRight(vec);
-        showVector(vec);
-        
     }
+   
 }
