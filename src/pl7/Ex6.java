@@ -135,7 +135,7 @@ public class Ex6 {
         System.out.println("6- Listar visitantes repetidos");
         
         int option = scanner.nextInt();
-        scanner.nextLine(); // é necessario para limpar o \n
+        scanner.nextLine(); // é necessario "consumir" o carater \n
         switch(option){
             case 1:
                 addVisitor();
